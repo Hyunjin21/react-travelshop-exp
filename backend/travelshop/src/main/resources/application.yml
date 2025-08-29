@@ -1,0 +1,63 @@
+# src/main/resources/application.yml
+# ┌───────────────────────────────
+# │ 스프링 부트 기본 설정
+spring:
+  # ┌─────────────────────────────
+  # │ SQL 초기화 설정 (data.sql 자동 실행)
+  sql:
+    init:
+      mode: always # 항상 data.sql 실행
+      encoding: UTF-8 
+  # ┌─────────────────────────────
+  # │ 데이터소스 설정
+  datasource:
+    # 메모리 모드 H2 DB 사용
+    url: jdbc:h2:mem:traveldb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  # ┌─────────────────────────────
+  # │ JPA / Hibernate 설정
+  jpa:
+    # Hibernate가 스키마를 먼저 생성(update)한 뒤에 data.sql 을 실행하도록
+    defer-datasource-initialization: true
+    hibernate:
+      # 개발 시 엔티티 기준으로 스키마 자동 생성/업데이트
+      ddl-auto: update
+    # 실행되는 SQL을 콘솔에 출력
+    show-sql: true
+  # ┌─────────────────────────────
+  # │ H2 콘솔 설정
+  h2:
+    console:
+      enabled: true
+      # 콘솔 접근 URL (브라우저에서 http://localhost:8080/h2-console 로 접속)
+      path: /h2-console
+# ┌───────────────────────────────
+# │ 서버 설정
+server:
+  # 애플리케이션 포트 번호
+  port: 8080
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+# ┌───────────────────────────────
+# │ OpenAPI(Swagger) 설정
+springdoc:
+  swagger-ui:
+  # Swagger UI 접근 경로
+  path: /swagger-ui.html
+# OpenAPI JSON 문서 경로 (기본값 /v3/api-docs)
+api-docs:
+  path: /v3/api-docs
+# ┌───────────────────────────────
+# │ 로깅 레벨 조정 (선택)
+logging:
+  level:
+    # Hibernate SQL 로그 디테일 낮추기 (SQL + 바인딩 파라미터만 출력)
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    # 스프링 프레임워크 로그 레벨 (필요시 조정)
+    org.springframework: INFO
