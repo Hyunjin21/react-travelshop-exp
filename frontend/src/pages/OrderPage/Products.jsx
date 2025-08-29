@@ -7,10 +7,7 @@ function Products({ name, imagePath, updateItemCount }) {
     updateItemCount(name, currentValue);
   };
 
-  const isAbsolute = /^https?:\/\//i.test(api.defaults.baseURL || "");
-  const imgSrc = isAbsolute
-    ? new URL(imagePath || "", api.defaults.baseURL).href
-    : (imagePath || "");
+  const imgSrc = `${import.meta.env.VITE_API_BASE}${imagePath}`;
 
   return (
     <div style={{ textAlign: "center" }}>
