@@ -2,12 +2,12 @@ import React from "react";
 import api from "../../lib/api";
 
 function Products({ name, imagePath, updateItemCount }) {
+  const imgSrc = `${import.meta.env.VITE_API_BASE_URL}${imagePath}`;
+
   const handleChange = (event) => {
     const currentValue = event.target.value;
     updateItemCount(name, currentValue);
   };
-
-  const imgSrc = `${import.meta.env.VITE_API_BASE_URL}${imagePath}`;
 
   return (
     <div style={{ textAlign: "center" }}>
