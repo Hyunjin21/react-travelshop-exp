@@ -7,7 +7,7 @@ function Products({ name, imagePath, updateItemCount }) {
     updateItemCount(name, currentValue);
   };
 
-  const imgSrc = `${import.meta.env.VITE_API_BASE}${imagePath}`;
+  const imgSrc = `${import.meta.env.VITE_API_BASE_URL}${imagePath}`;
 
   return (
     <div style={{ textAlign: "center" }}>
